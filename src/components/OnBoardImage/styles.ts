@@ -1,10 +1,14 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+interface IContainerProps {
+  positionImage: string;
+}
+
+export const Container = styled.View<IContainerProps>`
   width: 100%;
   flex-direction: row;
   align-items: center;
-  padding: 0;
-  margin: 0;
-  justify-content: space-between;
+  justify-content: ${(props) =>
+    props.positionImage ? 'center' : 'space-between'};
+  padding: 0 12px;
 `;
