@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   Container,
@@ -11,15 +12,17 @@ import {
 } from './styles';
 
 const Done: React.FC = () => {
+  const navigation = useNavigation();
+
   return (
     <Container>
       <AskText>O que você deseja fazer?</AskText>
       <WrapperButtons>
-        <ButtonLogin onPress={() => {}}>
+        <ButtonLogin onPress={() => navigation.navigate('SignIn')}>
           <ButtonLoginText>Login</ButtonLoginText>
         </ButtonLogin>
 
-        <ButtonRegister onPress={() => {}}>
+        <ButtonRegister onPress={() => navigation.navigate('SignUp')}>
           <ButtonRegisterText>Cadastro</ButtonRegisterText>
         </ButtonRegister>
       </WrapperButtons>
