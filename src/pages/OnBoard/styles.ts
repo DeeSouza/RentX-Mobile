@@ -12,7 +12,7 @@ export default StyleSheet.create({
     textAlign: 'left',
     alignItems: 'stretch',
     fontFamily: 'Archivo-Bold',
-    marginTop: 36,
+    marginTop: 60,
     lineHeight: 42,
   },
   subTitleStyles: {
