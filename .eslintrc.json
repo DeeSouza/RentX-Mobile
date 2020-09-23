@@ -1,6 +1,7 @@
 {
   "env": {
-    "es2021": true
+    "es2021": true,
+    "browser": true
   },
   "extends": [
     "plugin:react/recommended",
@@ -9,6 +10,10 @@
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended"
   ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -22,13 +27,14 @@
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "react/jsx-filename-extension": [1, {"extensions": [".tsx"]}],
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "import/prefer-default-export": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
     "react/jsx-wrap-multilines": "off",
     "no-unused-expressions": "off",
+    "react-native/no-inline-styles": "off",
     "@typescript-eslint/explicit-function-return-type": [
       "error",
       {
