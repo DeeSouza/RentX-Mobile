@@ -30,6 +30,6 @@ export const SubHeadingText = styled.Text`
 `;
 
 export const WrapperForm = styled.View`
-  margin-top: 110px;
+  margin-top: 80px;
   width: 100%;
 `;

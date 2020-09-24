@@ -4,6 +4,7 @@ import { Form } from '@unform/mobile';
 import { SubmitHandler, FormHandles } from '@unform/core';
 
 import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 import {
   Container,
@@ -62,6 +63,8 @@ const SignIn: React.FC = () => {
               ref={passwordInputRef}
               onSubmitEditing={() => formRef.current?.submitForm()}
             />
+
+            <Button>Login</Button>
           </Form>
         </WrapperForm>
       </KeyboardAvoidingView>
