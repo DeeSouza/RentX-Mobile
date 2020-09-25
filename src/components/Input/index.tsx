@@ -6,13 +6,17 @@ import React, {
 } from 'react';
 import { TextInputProps } from 'react-native';
 import { useField } from '@unform/core';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-import { Container, IconInput, TextInput } from './styles';
+import { Container, IconInput, TextInput, ViewPassword } from './styles';
 
 interface IInputProps extends TextInputProps {
   name: string;
   icon: string;
+  isPassword?: boolean;
+  secureTextEntry?: boolean;
+  handleShowPassword?(): void;
 }
 
 interface InputValueReference {
@@ -24,7 +28,7 @@ interface InputRef {
 }
 
 const Input: React.ForwardRefRenderFunction<InputRef, IInputProps> = (
-  { name, icon, ...rest },
+  { name, icon, isPassword, handleShowPassword, secureTextEntry, ...rest },
   ref,
 ) => {
   const inputElementRef = useRef<any>(null);
@@ -48,7 +52,7 @@ const Input: React.ForwardRefRenderFunction<InputRef, IInputProps> = (
   return (
     <Container>
       <IconInput>
-        <Icon name={icon} color="#7A7A80" size={20} />
+        <MaterialIcon name={icon} color="#7A7A80" size={20} />
       </IconInput>
 
       <TextInput
@@ -56,11 +60,22 @@ const Input: React.ForwardRefRenderFunction<InputRef, IInputProps> = (
         keyboardAppearance="dark"
         placeholderTextColor="#AEAEB3"
         defaultValue={defaultValue}
+        secureTextEntry={secureTextEntry}
         onChangeText={(value) => {
           inputValueRef.current.value = value;
         }}
         {...rest}
       />
+
+      {isPassword && (
+        <ViewPassword onPress={handleShowPassword}>
+          <FontAwesome
+            name={secureTextEntry ? 'eye' : 'eye-slash'}
+            color="#7A7A80"
+            size={20}
+          />
+        </ViewPassword>
+      )}
     </Container>
   );
 };

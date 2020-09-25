@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { KeyboardAvoidingView, Platform, TextInput } from 'react-native';
 import { Form } from '@unform/mobile';
 import { SubmitHandler, FormHandles } from '@unform/core';
@@ -12,6 +12,11 @@ import {
   HeadingText,
   SubHeadingText,
   WrapperForm,
+  RememberUser,
+  RememberUserText,
+  ForgotPassword,
+  ForgotPasswordText,
+  WrapperRememberAndForgot,
 } from './styles';
 
 interface FormData {
@@ -20,12 +25,17 @@ interface FormData {
 }
 
 const SignIn: React.FC = () => {
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
 
   const handleSubmit: SubmitHandler<FormData> = (data) => {
     console.log(data);
   };
+
+  const handleShowPassword = useCallback(() => {
+    setSecureTextEntry((state) => !state);
+  }, []);
 
   return (
     <Container>
@@ -56,13 +66,24 @@ const SignIn: React.FC = () => {
 
             <Input
               icon="lock"
+              isPassword
               name="password"
               placeholder="Senha"
-              secureTextEntry
+              secureTextEntry={secureTextEntry}
+              handleShowPassword={handleShowPassword}
               returnKeyType="send"
               ref={passwordInputRef}
               onSubmitEditing={() => formRef.current?.submitForm()}
             />
+
+            <WrapperRememberAndForgot>
+              <RememberUser>
+                <RememberUserText>Lembrar-me</RememberUserText>
+              </RememberUser>
+              <ForgotPassword onPress={() => {}}>
+                <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
+              </ForgotPassword>
+            </WrapperRememberAndForgot>
 
             <Button>Login</Button>
           </Form>

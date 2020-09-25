@@ -33,3 +33,24 @@ export const WrapperForm = styled.View`
   margin-top: 80px;
   width: 100%;
 `;
+
+export const WrapperRememberAndForgot = styled.TouchableOpacity`
+  padding: 34px 0px;
+  justify-content: space-between;
+  flex-direction: row;
+`;
+
+export const RememberUser = styled.View``;
+
+export const RememberUserText = styled.Text`
+  color: #737380;
+  font-family: 'Archivo-Regular';
+  font-size: 13px;
+`;
+
+export const ForgotPassword = styled.TouchableOpacity``;
+export const ForgotPasswordText = styled.Text`
+  color: #737380;
+  font-family: 'Archivo-Regular';
+  font-size: 13px;
+`;

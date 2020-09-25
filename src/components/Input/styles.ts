@@ -2,11 +2,12 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   height: 56px;
-  margin-bottom: 8px;
+  margin-top: 8px;
   width: 100%;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  position: relative;
 `;
 
 export const IconInput = styled.View`
@@ -26,5 +27,10 @@ export const TextInput = styled.TextInput`
   color: #aeaeb3;
   font-family: 'Archivo-Regular';
   font-size: 15px;
-  padding: 0px 30px;
+  padding: 0px 60px 0px 30px;
+`;
+
+export const ViewPassword = styled.TouchableOpacity`
+  position: absolute;
+  right: 30px;
 `;
