@@ -39,7 +39,7 @@ export const WrapperForm = styled.View`
 `;
 
 export const WrapperRememberAndForgot = styled.TouchableOpacity`
-  padding: 32px 0px 0px;
+  padding: 34px 0px;
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
@@ -72,4 +72,26 @@ export const ForgotPasswordText = styled.Text`
   color: #737380;
   font-family: 'Archivo-Regular';
   font-size: 13px;
+`;
+
+export const TitleForm = styled.Text`
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #3d3d4d;
+  font-family: 'Archivo-Bold';
+`;
+
+export const ButtonNext = styled.TouchableOpacity`
+  width: 100%;
+  background-color: #dc1637;
+  justify-content: center;
+  align-items: center;
+  height: 56px;
+  margin-top: 32px;
+`;
+
+export const ButtonNextText = styled.Text`
+  font-family: 'Archivo-Regular';
+  font-size: 15px;
+  color: #fff;
 `;

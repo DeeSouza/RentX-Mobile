@@ -22,7 +22,7 @@ const Done: React.FC = () => {
           <ButtonLoginText>Login</ButtonLoginText>
         </ButtonLogin>
 
-        <ButtonRegister onPress={() => navigation.navigate('SignUp')}>
+        <ButtonRegister onPress={() => navigation.navigate('SignUpFirstStep')}>
           <ButtonRegisterText>Cadastro</ButtonRegisterText>
         </ButtonRegister>
       </WrapperButtons>

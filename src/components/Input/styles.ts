@@ -27,7 +27,7 @@ export const TextInput = styled.TextInput`
   color: #aeaeb3;
   font-family: 'Archivo-Regular';
   font-size: 15px;
-  padding: 0px 60px 0px 30px;
+  padding: 0px 60px 0px 23px;
 `;
 
 export const ViewPassword = styled.TouchableOpacity`
