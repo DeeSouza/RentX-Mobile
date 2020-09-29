@@ -17,6 +17,7 @@ import {
   ForgotPassword,
   ForgotPasswordText,
   WrapperRememberAndForgot,
+  CheckboxContainer,
 } from './styles';
 
 interface FormData {
@@ -26,6 +27,8 @@ interface FormData {
 
 const SignIn: React.FC = () => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [rememberMe, setRememberMe] = useState(false);
+
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
 
@@ -35,6 +38,10 @@ const SignIn: React.FC = () => {
 
   const handleShowPassword = useCallback(() => {
     setSecureTextEntry((state) => !state);
+  }, []);
+
+  const handleRememberMe = useCallback(() => {
+    setRememberMe((state) => !state);
   }, []);
 
   return (
@@ -78,6 +85,10 @@ const SignIn: React.FC = () => {
 
             <WrapperRememberAndForgot>
               <RememberUser>
+                <CheckboxContainer
+                  checked={rememberMe}
+                  onPress={handleRememberMe}
+                />
                 <RememberUserText>Lembrar-me</RememberUserText>
               </RememberUser>
               <ForgotPassword onPress={() => {}}>
