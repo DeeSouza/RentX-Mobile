@@ -2,6 +2,8 @@ import React, {
   useEffect,
   useImperativeHandle,
   useRef,
+  useState,
+  useCallback,
   forwardRef,
 } from 'react';
 import { TextInputProps } from 'react-native';
@@ -31,8 +33,10 @@ const Input: React.ForwardRefRenderFunction<InputRef, IInputProps> = (
   { name, icon, isPassword, handleShowPassword, secureTextEntry, ...rest },
   ref,
 ) => {
+  const [isFocused, setIsFocused] = useState(false);
+
   const inputElementRef = useRef<any>(null);
-  const { registerField, defaultValue, fieldName } = useField(name);
+  const { registerField, defaultValue, fieldName, error } = useField(name);
   const inputValueRef = useRef<InputValueReference>({ value: defaultValue });
 
   useImperativeHandle(ref, () => ({
@@ -40,6 +44,14 @@ const Input: React.ForwardRefRenderFunction<InputRef, IInputProps> = (
       inputElementRef.current.focus();
     },
   }));
+
+  const handleInputFocus = useCallback(() => {
+    setIsFocused(true);
+  }, []);
+
+  const handleInputBlur = useCallback(() => {
+    setIsFocused(false);
+  }, []);
 
   useEffect(() => {
     registerField<string>({
@@ -51,7 +63,7 @@ const Input: React.ForwardRefRenderFunction<InputRef, IInputProps> = (
 
   return (
     <Container>
-      <IconInput>
+      <IconInput isFocused={isFocused} isErrored={!!error}>
         <MaterialIcon name={icon} color="#7A7A80" size={20} />
       </IconInput>
 
@@ -61,6 +73,8 @@ const Input: React.ForwardRefRenderFunction<InputRef, IInputProps> = (
         placeholderTextColor="#AEAEB3"
         defaultValue={defaultValue}
         secureTextEntry={secureTextEntry}
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
         onChangeText={(value) => {
           inputValueRef.current.value = value;
         }}

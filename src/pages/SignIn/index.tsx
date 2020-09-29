@@ -1,10 +1,13 @@
 import React, { useState, useCallback, useRef } from 'react';
-import { KeyboardAvoidingView, Platform, TextInput } from 'react-native';
+import { KeyboardAvoidingView, Platform, TextInput, Alert } from 'react-native';
 import { Form } from '@unform/mobile';
 import { SubmitHandler, FormHandles } from '@unform/core';
+import * as yup from 'yup';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+
+import getValidationErrors from '../../utils/getValidationErrors';
 
 import {
   Container,
@@ -20,7 +23,7 @@ import {
   CheckboxContainer,
 } from './styles';
 
-interface FormData {
+interface SignInFormData {
   email: string;
   password: string;
 }
@@ -32,8 +35,32 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
 
-  const handleSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
+  const handleSubmit: SubmitHandler<SignInFormData> = async (data) => {
+    try {
+      const schema = yup.object().shape({
+        email: yup
+          .string()
+          .required('E-mail é obrigatório')
+          .email('Digite um e-mail válido'),
+        password: yup.string().required('Senha obrigatória'),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+    } catch (err) {
+      if (err instanceof yup.ValidationError) {
+        const errors = getValidationErrors(err);
+        formRef.current?.setErrors(errors);
+
+        return;
+      }
+
+      Alert.alert(
+        'Erro na Autenticação',
+        'Ocorreu um erro ao fazer login. Verifique as credenciais.',
+      );
+    }
   };
 
   const handleShowPassword = useCallback(() => {
@@ -96,7 +123,7 @@ const SignIn: React.FC = () => {
               </ForgotPassword>
             </WrapperRememberAndForgot>
 
-            <Button>Login</Button>
+            <Button onPress={() => formRef.current?.submitForm()}>Login</Button>
           </Form>
         </WrapperForm>
       </KeyboardAvoidingView>

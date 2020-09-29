@@ -1,4 +1,9 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
+
+interface IIconInputProps {
+  isFocused: boolean;
+  isErrored: boolean;
+}
 
 export const Container = styled.View`
   height: 56px;
@@ -10,13 +15,24 @@ export const Container = styled.View`
   position: relative;
 `;
 
-export const IconInput = styled.View`
+export const IconInput = styled.View<IIconInputProps>`
   width: 56px;
   height: 56px;
   background-color: #f2f2fa;
   justify-content: center;
   align-items: center;
   margin-right: 2px;
+
+  ${(props) =>
+    props.isErrored &&
+    css`
+      border: 1px solid #dc1637;
+    `}
+  ${(props) =>
+    props.isFocused &&
+    css`
+      border: 1px solid #e7e7e7;
+    `}
 `;
 
 export const TextInput = styled.TextInput`

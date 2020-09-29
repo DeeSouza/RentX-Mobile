@@ -3,8 +3,11 @@ import { KeyboardAvoidingView, Platform, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import { SubmitHandler, FormHandles } from '@unform/core';
+import * as yup from 'yup';
 
 import Input from '../../../components/Input';
+
+import getValidationErrors from '../../../utils/getValidationErrors';
 
 import {
   Container,
@@ -18,18 +21,37 @@ import {
 } from './styles';
 
 interface FormData {
+  name: string;
   email: string;
-  password: string;
 }
 
 const SignUpFirstStep: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const passwordInputRef = useRef<TextInput>(null);
+  const emailInputRef = useRef<TextInput>(null);
 
   const navigation = useNavigation();
 
-  const handleSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
+  const handleNext: SubmitHandler<FormData> = async (data) => {
+    try {
+      const schema = yup.object().shape({
+        email: yup
+          .string()
+          .required('E-mail é obrigatório')
+          .email('Digite um e-mail válido'),
+        name: yup.string().required('Nome obrigatório'),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      navigation.navigate('SignUpSecondStep');
+    } catch (err) {
+      if (err instanceof yup.ValidationError) {
+        const errors = getValidationErrors(err);
+        formRef.current?.setErrors(errors);
+      }
+    }
   };
 
   return (
@@ -49,7 +71,7 @@ const SignUpFirstStep: React.FC = () => {
         <WrapperForm>
           <TitleForm>1. Dados</TitleForm>
 
-          <Form onSubmit={handleSubmit} ref={formRef}>
+          <Form onSubmit={handleNext} ref={formRef}>
             <Input
               icon="person"
               name="name"
@@ -57,6 +79,7 @@ const SignUpFirstStep: React.FC = () => {
               autoCorrect={false}
               autoCapitalize="words"
               returnKeyType="next"
+              onSubmitEditing={() => emailInputRef.current?.focus()}
             />
 
             <Input
@@ -67,10 +90,10 @@ const SignUpFirstStep: React.FC = () => {
               autoCapitalize="none"
               keyboardType="email-address"
               returnKeyType="next"
-              onSubmitEditing={() => passwordInputRef.current?.focus()}
+              onSubmitEditing={() => formRef.current?.submitForm()}
             />
 
-            <ButtonNext onPress={() => navigation.navigate('SignUpSecondStep')}>
+            <ButtonNext onPress={() => formRef.current?.submitForm()}>
               <ButtonNextText>Próximo</ButtonNextText>
             </ButtonNext>
           </Form>
