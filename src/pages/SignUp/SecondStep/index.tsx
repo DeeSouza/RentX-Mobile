@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef } from 'react';
 import { KeyboardAvoidingView, Platform, TextInput, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import { SubmitHandler, FormHandles } from '@unform/core';
 import * as yup from 'yup';
@@ -30,19 +31,20 @@ const SignUpSecondStep: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const confirmPasswordInputRef = useRef<TextInput>(null);
 
+  const navigation = useNavigation();
+
   const handleSubmit: SubmitHandler<SignUpFormData> = async (data) => {
     try {
       const schema = yup.object().shape({
-        email: yup
-          .string()
-          .required('E-mail é obrigatório')
-          .email('Digite um e-mail válido'),
         password: yup.string().required('Senha obrigatória'),
+        confirmPassword: yup.string().required('Senha obrigatória'),
       });
 
       await schema.validate(data, {
         abortEarly: false,
       });
+
+      navigation.navigate('DoneRegister');
     } catch (err) {
       if (err instanceof yup.ValidationError) {
         const errors = getValidationErrors(err);
@@ -98,7 +100,7 @@ const SignUpSecondStep: React.FC = () => {
             <Input
               icon="lock"
               isPassword
-              name="password"
+              name="confirmPassword"
               placeholder="Repetir Senha"
               secureTextEntry={secureTextEntryConfirm}
               handleShowPassword={handleShowConfirmPassword}
