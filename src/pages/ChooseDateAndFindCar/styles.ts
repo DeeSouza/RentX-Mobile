@@ -5,10 +5,11 @@ interface IDateValueProps {
   hasDate: boolean;
 }
 
-export const Container = styled.SafeAreaView.attrs({
+export const Container = styled.ScrollView.attrs({
   paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
 })`
   flex: 1;
+  padding-bottom: 20px;
 `;
 
 export const HeaderDate = styled.View`
@@ -38,7 +39,7 @@ export const GroupDateChoosed = styled.View`
 
 export const FromDate = styled.View`
   flex: 1;
-  width: 104px;
+  width: 120px;
 `;
 
 export const FromDateText = styled.Text`
@@ -48,13 +49,13 @@ export const FromDateText = styled.Text`
 
 export const ImageArrow = styled.View`
   align-items: center;
-  width: 40px;
+  width: 20px;
   margin: 0px 40px;
 `;
 
 export const ToDate = styled.View`
   flex: 1;
-  width: 104px;
+  width: 120px;
 `;
 
 export const ToDateText = styled.Text`
@@ -93,4 +94,19 @@ export const CalendarWrapper = styled.View`
   flex: 1;
   padding: 0;
   margin: 0;
+`;
+
+export const ButtonConfirm = styled.TouchableOpacity`
+  height: 56px;
+  background-color: #dc1637;
+  width: 90%;
+  margin: 58px auto;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ButtonConfirmText = styled.Text`
+  font-family: 'Archivo-Regular';
+  color: #fff;
+  font-size: 15px;
 `;

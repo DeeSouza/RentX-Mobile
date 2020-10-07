@@ -4,6 +4,7 @@ import { Calendar, LocaleConfig, DateObject } from 'react-native-calendars';
 import { parseISO, eachDayOfInterval, format, isBefore } from 'date-fns';
 import ptBr from 'date-fns/locale/pt-BR';
 
+import ArrowCalendar from '../../components/ArrowCalendar';
 import DayCalendar from '../../components/DayCalendar';
 import ArrowDate from '../../assets/icons/arrow-date.png';
 
@@ -22,6 +23,8 @@ import {
   ToDateValue,
   ToDateValueText,
   CalendarWrapper,
+  ButtonConfirm,
+  ButtonConfirmText,
 } from './styles';
 
 interface IIntervalDates {
@@ -190,12 +193,36 @@ const ChooseDateAndFindCar: React.FC = () => {
           dayComponent={(props) => (
             <DayCalendar {...props} onDayPress={onDayPress} />
           )}
-          current="2020-10-01"
-          minDate="2020-10-10"
+          renderArrow={(direction) => <ArrowCalendar direction={direction} />}
+          current={new Date().getTime()}
+          minDate={new Date().getTime()}
           markedDates={markedDates}
           markingType="period"
           theme={{
             calendarBackground: '#FFFFFF',
+            'stylesheet.calendar.header': {
+              header: {
+                marginVertical: 15,
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+              },
+              monthText: {
+                fontSize: 20,
+                color: '#47474D',
+                fontFamily: 'Archivo-SemiBold',
+                justifyContent: 'flex-start',
+                marginRight: 'auto',
+              },
+              week: {
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                paddingBottom: 15,
+                marginBottom: 15,
+                borderBottomColor: '#EBEBF0',
+                borderBottomWidth: 1,
+              },
+            },
             'stylesheet.calendar.main': {
               container: {
                 marginHorizontal: 0,
@@ -211,6 +238,10 @@ const ChooseDateAndFindCar: React.FC = () => {
           }}
         />
       </CalendarWrapper>
+
+      <ButtonConfirm onPress={() => {}}>
+        <ButtonConfirmText>Confirmar</ButtonConfirmText>
+      </ButtonConfirm>
     </Container>
   );
 };

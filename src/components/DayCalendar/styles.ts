@@ -4,16 +4,23 @@ interface IDayCalendarProps {
   startingDay?: boolean;
   endingDay?: boolean;
   interval?: boolean;
+  disabled?: boolean;
 }
 
-export const Day = styled.TouchableOpacity<IDayCalendarProps>`
+export const DayWrapper = styled.View<IDayCalendarProps>`
   width: 100%;
   height: 48px;
-  align-items: center;
-  justify-content: center;
   padding: 0px;
   margin: 0px;
+  align-items: center;
+  justify-content: center;
   background-color: #ffffff;
+
+  ${(props) =>
+    props.disabled &&
+    css`
+      opacity: 0.3;
+    `}
 
   ${(props) =>
     (props.startingDay || props.endingDay) &&
@@ -29,8 +36,16 @@ export const Day = styled.TouchableOpacity<IDayCalendarProps>`
     `}
 `;
 
+export const Day = styled.TouchableOpacity`
+  height: 48px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const DayText = styled.Text<IDayCalendarProps>`
   color: #000;
+  font-weight: 500;
 
   ${(props) =>
     (props.startingDay || props.endingDay) &&
