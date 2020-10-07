@@ -87,3 +87,10 @@ export const ToDateValueText = styled.Text`
   color: #fff;
   font-family: 'Archivo-Regular';
 `;
+
+export const CalendarWrapper = styled.View`
+  width: 100%;
+  flex: 1;
+  padding: 0;
+  margin: 0;
+`;

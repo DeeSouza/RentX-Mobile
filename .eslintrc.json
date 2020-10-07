@@ -33,6 +33,7 @@
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
     "react/jsx-wrap-multilines": "off",
+    "import/no-duplicates": "off",
     "no-unused-expressions": "off",
     "react-native/no-inline-styles": "off",
     "no-unused-vars": "off",
