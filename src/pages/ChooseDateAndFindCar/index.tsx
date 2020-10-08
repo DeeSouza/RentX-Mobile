@@ -142,8 +142,13 @@ const ChooseDateAndFindCar: React.FC = () => {
   );
 
   const handleConfirmDates = useCallback(() => {
-    navigation.navigate('Main');
-  }, [navigation]);
+    navigation.navigate('Main', {
+      fromDate,
+      toDate,
+      formatFromDate: JSON.stringify(formatFromDate),
+      formatToDate: JSON.stringify(formatToDate),
+    });
+  }, [navigation, fromDate, formatFromDate, toDate, formatToDate]);
 
   useEffect(() => {
     if (formatFromDate && formatToDate) {

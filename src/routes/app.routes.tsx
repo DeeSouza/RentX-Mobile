@@ -17,7 +17,6 @@ const App = createBottomTabNavigator();
 
 const AppRoutes: React.FC = () => (
   <App.Navigator
-    initialRouteName="Main"
     tabBarOptions={{
       showLabel: false,
     }}
