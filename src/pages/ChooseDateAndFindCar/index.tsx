@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Image } from 'react-native';
+
+import { useNavigation } from '@react-navigation/native';
 import { Calendar, LocaleConfig, DateObject } from 'react-native-calendars';
 import { parseISO, eachDayOfInterval, format, isBefore } from 'date-fns';
 import ptBr from 'date-fns/locale/pt-BR';
@@ -36,6 +38,8 @@ interface IIntervalDates {
 }
 
 const ChooseDateAndFindCar: React.FC = () => {
+  const navigation = useNavigation();
+
   LocaleConfig.locales['pt-br'] = {
     monthNames: [
       'Janeiro',
@@ -137,6 +141,10 @@ const ChooseDateAndFindCar: React.FC = () => {
     [fromDate, toDate, formatFromDate],
   );
 
+  const handleConfirmDates = useCallback(() => {
+    navigation.navigate('Main');
+  }, [navigation]);
+
   useEffect(() => {
     if (formatFromDate && formatToDate) {
       const intervalDates = eachDayOfInterval({
@@ -191,7 +199,7 @@ const ChooseDateAndFindCar: React.FC = () => {
       <CalendarWrapper>
         <Calendar
           dayComponent={(props) => (
-            <DayCalendar {...props} onDayPress={onDayPress} />
+            <DayCalendar {...props} onLongPress={onDayPress} />
           )}
           renderArrow={(direction) => <ArrowCalendar direction={direction} />}
           current={new Date().getTime()}
@@ -239,7 +247,7 @@ const ChooseDateAndFindCar: React.FC = () => {
         />
       </CalendarWrapper>
 
-      <ButtonConfirm onPress={() => {}}>
+      <ButtonConfirm onPress={handleConfirmDates}>
         <ButtonConfirmText>Confirmar</ButtonConfirmText>
       </ButtonConfirm>
     </Container>

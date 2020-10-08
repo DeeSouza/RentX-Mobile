@@ -10,6 +10,7 @@ export const Container = styled.ScrollView.attrs({
 })`
   flex: 1;
   padding-bottom: 20px;
+  background-color: #fff;
 `;
 
 export const HeaderDate = styled.View`
