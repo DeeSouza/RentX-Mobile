@@ -252,7 +252,10 @@ const ChooseDateAndFindCar: React.FC = () => {
         />
       </CalendarWrapper>
 
-      <ButtonConfirm onPress={handleConfirmDates}>
+      <ButtonConfirm
+        onPress={handleConfirmDates}
+        disabled={!fromDate || !toDate}
+      >
         <ButtonConfirmText>Confirmar</ButtonConfirmText>
       </ButtonConfirm>
     </Container>

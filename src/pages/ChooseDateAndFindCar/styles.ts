@@ -5,6 +5,10 @@ interface IDateValueProps {
   hasDate: boolean;
 }
 
+interface IButtonConfirmProps {
+  disabled: boolean;
+}
+
 export const Container = styled.ScrollView.attrs({
   paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
 })`
@@ -97,9 +101,10 @@ export const CalendarWrapper = styled.View`
   margin: 0;
 `;
 
-export const ButtonConfirm = styled.TouchableOpacity`
+export const ButtonConfirm = styled.TouchableOpacity<IButtonConfirmProps>`
   height: 56px;
   background-color: #dc1637;
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
   width: 90%;
   margin: 58px auto;
   align-items: center;

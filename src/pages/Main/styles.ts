@@ -7,6 +7,7 @@ export const Container = styled.SafeAreaView.attrs({
   paddingTop: Platform.OS === 'android' ? heightScreen : 0,
 })`
   flex: 1;
+  background-color: #ffffff;
 `;
 
 export const HeaderDate = styled.View`
@@ -21,15 +22,15 @@ export const HeaderDate = styled.View`
 
 export const GroupDateChoosed = styled.View`
   width: 100%;
-  height: 120px;
+  height: 40px;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-  flex: 1;
+  align-items: flex-end;
 `;
 
 export const FromDate = styled.View`
   flex: 1;
+  width: 45%;
 `;
 
 export const FromDateText = styled.Text`
@@ -37,8 +38,14 @@ export const FromDateText = styled.Text`
   font-size: 10px;
 `;
 
+export const ImageArrow = styled.View`
+  align-items: center;
+  flex: 1;
+`;
+
 export const ToDate = styled.View`
   flex: 1;
+  width: 45%;
 `;
 
 export const ToDateText = styled.Text`
@@ -68,4 +75,36 @@ export const ToDateValueText = styled.Text`
   font-size: 15px;
   color: #fff;
   font-family: 'Archivo-Regular';
+`;
+
+export const WrapperResultsCar = styled.View`
+  flex: 1;
+`;
+
+export const WrapperFilter = styled.View`
+  padding: 25px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const TitleWrapperText = styled.Text`
+  font-family: 'Archivo-SemiBold';
+  font-size: 25px;
+  color: #47474d;
+`;
+
+export const AmountResultText = styled.Text`
+  font-family: 'Archivo-REgular';
+  font-size: 13px;
+  color: #aeaeb3;
+  margin-left: auto;
+`;
+
+export const FilterButton = styled.TouchableOpacity`
+  margin-left: 26px;
+`;
+
+export const FlatListResults = styled.FlatList`
+  padding: 0px 16px 0px 16px;
 `;
