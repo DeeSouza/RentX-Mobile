@@ -5,6 +5,8 @@ import Gasoline from '../../assets/icons/gasoline.png';
 import Hybrid from '../../assets/icons/hybrid.png';
 import Energy from '../../assets/icons/energy.png';
 
+import LamboCar from '../../assets/cars/lambo.png';
+
 import {
   Container,
   DetailsCar,
@@ -33,7 +35,9 @@ const ItemCarResult: React.FC = () => {
         </InfoRent>
       </DetailsCar>
 
-      <GalleryImageCars />
+      <GalleryImageCars>
+        <Image source={LamboCar} />
+      </GalleryImageCars>
 
       <FuelType>
         <Image source={Gasoline} />

@@ -22,19 +22,6 @@ const TabIconBar: React.FC<BottomTabBarProps> = ({
 
   const { tabBarVisible } = descriptors[routes[index].key].options;
 
-  if (tabBarVisible === false) {
-    return null;
-  }
-
-  const routeNames = routes
-    .filter((route) => route.name !== 'ChooseDateAndFindCar')
-    .map((route, indexRoute) => ({
-      ...route,
-      icon: iconsTabs[indexRoute],
-      isFocused: indexRoute === indexTab,
-      colorIcon: indexRoute === indexTab ? '#DC1637' : '#A0A0B2',
-    }));
-
   const handleClickTab = useCallback(
     (selectedRoute) => {
       const event = navigation.emit({
@@ -49,6 +36,19 @@ const TabIconBar: React.FC<BottomTabBarProps> = ({
     },
     [navigation],
   );
+
+  if (tabBarVisible === false) {
+    return null;
+  }
+
+  const routeNames = routes
+    .filter((route) => route.name !== 'ChooseDateAndFindCar')
+    .map((route, indexRoute) => ({
+      ...route,
+      icon: iconsTabs[indexRoute],
+      isFocused: indexRoute === indexTab,
+      colorIcon: indexRoute === indexTab ? '#DC1637' : '#A0A0B2',
+    }));
 
   return (
     <Container>

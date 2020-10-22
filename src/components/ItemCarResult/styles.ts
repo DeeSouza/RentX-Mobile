@@ -12,7 +12,7 @@ export const Container = styled.View`
 `;
 
 export const DetailsCar = styled.View`
-  padding: 24px;
+  padding: 24px 24px 0px 24px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -52,8 +52,10 @@ export const PriceText = styled.Text`
 `;
 
 export const GalleryImageCars = styled.View`
-  height: 50px;
-  background-color: #000;
+  width: 100%;
+  height: 120px;
+  justify-content: center;
+  align-items: center;
   flex: 1;
 `;
 
