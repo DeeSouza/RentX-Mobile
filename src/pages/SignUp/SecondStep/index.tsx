@@ -19,7 +19,7 @@ import {
   TitleForm,
 } from './styles';
 
-interface SignUpFormData {
+interface ISignUpFormData {
   password: string;
   passwordConfirm: string;
 }
@@ -33,7 +33,7 @@ const SignUpSecondStep: React.FC = () => {
 
   const navigation = useNavigation();
 
-  const handleSubmit: SubmitHandler<SignUpFormData> = async (data) => {
+  const handleSubmit: SubmitHandler<ISignUpFormData> = async (data) => {
     try {
       const schema = yup.object().shape({
         password: yup.string().required('Senha obrigatória'),

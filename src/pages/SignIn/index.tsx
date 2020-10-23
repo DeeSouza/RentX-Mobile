@@ -23,7 +23,7 @@ import {
   CheckboxContainer,
 } from './styles';
 
-interface SignInFormData {
+interface ISignInFormData {
   email: string;
   password: string;
 }
@@ -35,7 +35,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
 
-  const handleSubmit: SubmitHandler<SignInFormData> = async (data) => {
+  const handleSubmit: SubmitHandler<ISignInFormData> = async (data) => {
     try {
       const schema = yup.object().shape({
         email: yup

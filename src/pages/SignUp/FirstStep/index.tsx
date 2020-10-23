@@ -20,7 +20,7 @@ import {
   ButtonNextText,
 } from './styles';
 
-interface FormData {
+interface IFormData {
   name: string;
   email: string;
 }
@@ -31,7 +31,7 @@ const SignUpFirstStep: React.FC = () => {
 
   const navigation = useNavigation();
 
-  const handleNext: SubmitHandler<FormData> = async (data) => {
+  const handleNext: SubmitHandler<IFormData> = async (data) => {
     try {
       const schema = yup.object().shape({
         email: yup
