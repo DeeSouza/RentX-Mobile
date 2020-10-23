@@ -49,7 +49,7 @@ const List: React.FC = () => {
               />
             </Form>
           </SearchField>
-          <SearchButtonSubmit onPress={() => {}}>
+          <SearchButtonSubmit onPress={() => formRef.current?.submitForm()}>
             <Icon name="search" size={20} color="#47474D" />
           </SearchButtonSubmit>
         </Search>
