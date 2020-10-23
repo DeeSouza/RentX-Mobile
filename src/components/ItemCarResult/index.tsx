@@ -20,7 +20,9 @@ import {
   FuelType,
 } from './styles';
 
-const ItemCarResult: React.FC = () => {
+import { IResultProps } from '../../pages/Main';
+
+const ItemCarResult: React.FC<IResultProps> = () => {
   return (
     <Container>
       <DetailsCar>

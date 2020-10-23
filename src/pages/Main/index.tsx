@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { RouteProp } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -41,23 +41,36 @@ interface IMainProps {
   route: MainScreenRouteProps;
 }
 
+export interface IResultProps {
+  id: string;
+  name: string;
+}
+
 const Main: React.FC<IMainProps> = ({ route }) => {
   const { fromDate, toDate, formatFromDate, formatToDate } = route.params;
+  const [results, setResults] = useState<IResultProps[]>([]);
 
-  const DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'First Item',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Second Item',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Third Item',
-    },
-  ];
+  useEffect(() => {
+    const DATA = [
+      {
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+        name: 'First Item',
+      },
+      {
+        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+        name: 'Second Item',
+      },
+      {
+        id: '58694a0f-3da1-471f-bd96-145571e29d72',
+        name: 'Third Item',
+      },
+    ];
+    setResults(DATA);
+  }, []);
+
+  const handleFilterSearch = useCallback((data) => {
+    console.log(data);
+  }, []);
 
   return (
     <Container>
@@ -83,20 +96,22 @@ const Main: React.FC<IMainProps> = ({ route }) => {
         </GroupDateChoosed>
       </HeaderDate>
 
-      {DATA.length > 0 ? (
+      {results.length > 0 ? (
         <WrapperResultsCar>
           <WrapperFilter>
             <TitleWrapperText>Resultados</TitleWrapperText>
             <AmountResultText>3 carros</AmountResultText>
-            <FilterButton onPress={() => {}}>
+            <FilterButton onPress={handleFilterSearch}>
               <Icon name="tune" color="#47474D" size={20} />
             </FilterButton>
           </WrapperFilter>
 
           <FlatListResults
-            renderItem={ItemCarResult}
-            data={DATA}
+            data={results}
             keyExtractor={(item) => item.id}
+            renderItem={({ item }: { item: IResultProps }) => (
+              <ItemCarResult {...item} />
+            )}
           />
         </WrapperResultsCar>
       ) : (

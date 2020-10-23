@@ -1,28 +1,24 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
+  height: 146px;
   background-color: #f4f5f6;
-  height: 240px;
-  width: 100%;
   margin-bottom: 16px;
-  flex: 1;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
   border-bottom-color: #ebebf0;
   border-bottom-width: 1px;
-  padding: 24px 24px 0px 24px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
 `;
 
 export const DetailsCar = styled.View`
-  flex-direction: row;
+  padding: 24px 0px 24px 24px;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-`;
-
-export const InfoCar = styled.View`
-  flex: 1;
-  width: 80%;
+  align-items: flex-start;
+  width: 130px;
+  height: 100%;
 `;
 
 export const ModelCarText = styled.Text`
@@ -33,7 +29,7 @@ export const ModelCarText = styled.Text`
 
 export const NameCarText = styled.Text`
   font-family: 'Archivo-Medium';
-  font-size: 20px;
+  font-size: 15px;
   color: #47474d;
 `;
 
@@ -45,25 +41,24 @@ export const PeriodText = styled.Text`
   font-family: 'Archivo-Regular';
   font-size: 10px;
   color: #aeaeb3;
+  margin-top: 16px;
 `;
 
 export const PriceText = styled.Text`
   font-family: 'Archivo-Medium';
-  font-size: 20px;
+  font-size: 15px;
   color: #dc1637;
 `;
 
-export const GalleryImageCars = styled.View`
-  width: 100%;
-  height: 120px;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
+export const ImageFuelType = styled.Image`
+  position: absolute;
+  right: 0;
+  bottom: 24px;
 `;
 
-export const FuelType = styled.View`
-  padding: 24px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+export const WrapperImage = styled.View`
+  padding: 24px 24px 24px 0px;
+  align-items: flex-end;
+  flex: 1;
+  height: 100%;
 `;

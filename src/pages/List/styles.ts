@@ -1,5 +1,7 @@
-import { Platform, StatusBar } from 'react-native';
+import { Platform, StatusBar, FlatList } from 'react-native';
 import styled from 'styled-components/native';
+
+import { IResultProps } from '.';
 
 const heightScreen = StatusBar.currentHeight || 0;
 
@@ -64,3 +66,12 @@ export const SearchButtonSubmit = styled.TouchableOpacity`
   align-items: center;
   flex: 1;
 `;
+
+export const WrapperResultsCar = styled.View`
+  flex: 1;
+  margin-top: 16px;
+`;
+
+export const FlatListResults = styled(
+  FlatList as new () => FlatList<IResultProps>,
+)``;

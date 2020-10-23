@@ -1,5 +1,7 @@
-import { Platform, StatusBar } from 'react-native';
+import { Platform, StatusBar, FlatList } from 'react-native';
 import styled from 'styled-components/native';
+
+import { IResultProps } from '.';
 
 const heightScreen = StatusBar.currentHeight || 0;
 
@@ -105,6 +107,8 @@ export const FilterButton = styled.TouchableOpacity`
   margin-left: 26px;
 `;
 
-export const FlatListResults = styled.FlatList`
+export const FlatListResults = styled(
+  FlatList as new () => FlatList<IResultProps>,
+)`
   padding: 0px 16px 0px 16px;
 `;
