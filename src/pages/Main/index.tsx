@@ -3,6 +3,7 @@ import { RouteProp } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import ItemCarResult from '../../components/ItemCarResult';
+import NoResult from '../../components/NoResult';
 
 import {
   Container,
@@ -82,21 +83,25 @@ const Main: React.FC<IMainProps> = ({ route }) => {
         </GroupDateChoosed>
       </HeaderDate>
 
-      <WrapperResultsCar>
-        <WrapperFilter>
-          <TitleWrapperText>Resultados</TitleWrapperText>
-          <AmountResultText>3 carros</AmountResultText>
-          <FilterButton onPress={() => {}}>
-            <Icon name="tune" color="#47474D" size={20} />
-          </FilterButton>
-        </WrapperFilter>
+      {DATA.length > 0 ? (
+        <WrapperResultsCar>
+          <WrapperFilter>
+            <TitleWrapperText>Resultados</TitleWrapperText>
+            <AmountResultText>3 carros</AmountResultText>
+            <FilterButton onPress={() => {}}>
+              <Icon name="tune" color="#47474D" size={20} />
+            </FilterButton>
+          </WrapperFilter>
 
-        <FlatListResults
-          renderItem={ItemCarResult}
-          data={DATA}
-          keyExtractor={(item) => item.id}
-        />
-      </WrapperResultsCar>
+          <FlatListResults
+            renderItem={ItemCarResult}
+            data={DATA}
+            keyExtractor={(item) => item.id}
+          />
+        </WrapperResultsCar>
+      ) : (
+        <NoResult />
+      )}
     </Container>
   );
 };
