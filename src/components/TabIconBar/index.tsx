@@ -16,6 +16,7 @@ const TabIconBar: React.FC<BottomTabBarProps> = ({
   descriptors,
   navigation,
 }) => {
+  const routesTabs = ['Main', 'List', 'Agenda', 'Profile'];
   const iconsTabs = ['home', 'car', 'calendar', 'user'];
   const { routes, index } = state;
   const indexTab = index - 1;
@@ -42,7 +43,7 @@ const TabIconBar: React.FC<BottomTabBarProps> = ({
   }
 
   const routeNames = routes
-    .filter((route) => route.name !== 'ChooseDateAndFindCar')
+    .filter((route) => routesTabs.includes(route.name))
     .map((route, indexRoute) => ({
       ...route,
       icon: iconsTabs[indexRoute],

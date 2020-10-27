@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 
 import CardCar from '../../components/CardCar';
@@ -29,12 +30,10 @@ import {
 } from './styles';
 
 const Profile: React.FC = () => {
+  const navigation = useNavigation();
+
   const handleEditProfile = useCallback(() => {
     console.log('Edit Profile');
-  }, []);
-
-  const handleLogout = useCallback(() => {
-    console.log('Logout');
   }, []);
 
   return (
@@ -46,7 +45,7 @@ const Profile: React.FC = () => {
               <Icon name="edit-3" size={24} color="#AEAEB3" />
             </ButtonEditProfile>
             <TitleText>Perfil</TitleText>
-            <ButtonLogout onPress={handleLogout}>
+            <ButtonLogout onPress={() => navigation.navigate('SignOut')}>
               <Icon name="power" size={24} color="#AEAEB3" />
             </ButtonLogout>
           </HeaderWrapper>
