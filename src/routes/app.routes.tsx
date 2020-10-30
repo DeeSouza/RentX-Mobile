@@ -6,6 +6,7 @@ import Main from '../pages/Main';
 import List from '../pages/List';
 import Agenda from '../pages/Agenda';
 import Profile from '../pages/Profile';
+import EditProfile from '../pages/EditProfile';
 import SignOut from '../pages/SignOut';
 
 import TabIconBar from '../components/TabIconBar';
@@ -25,6 +26,13 @@ const AppRoutes: React.FC = () => (
     <App.Screen name="List" component={List} />
     <App.Screen name="Agenda" component={Agenda} />
     <App.Screen name="Profile" component={Profile} />
+    <App.Screen
+      options={{
+        tabBarVisible: false,
+      }}
+      name="EditProfile"
+      component={EditProfile}
+    />
 
     <App.Screen
       options={{

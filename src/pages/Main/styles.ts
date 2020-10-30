@@ -42,7 +42,7 @@ export const FromDateText = styled.Text`
 
 export const ImageArrow = styled.View`
   align-items: center;
-  flex: 1;
+  margin: 0px 30px;
 `;
 
 export const ToDate = styled.View`
