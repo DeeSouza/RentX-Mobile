@@ -25,7 +25,7 @@ const Profile: React.FC = () => {
     <Container>
       <ScrollViewContainer>
         <HeaderProfile
-          enableEdit
+          enableEdit={false}
           handleEditProfile={() => navigation.navigate('EditProfile')}
           handleNavigation={() => navigation.navigate('SignOut')}
         />

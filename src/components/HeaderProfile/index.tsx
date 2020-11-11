@@ -16,6 +16,7 @@ import {
   ImageProfile,
   ProfileNameText,
   ItemEmpty,
+  EditProfile,
 } from './styles';
 
 interface IProps {
@@ -36,31 +37,40 @@ const HeaderProfile: React.FC<IProps> = ({
       <Header>
         {enableEdit ? (
           <HeaderWrapper>
-            <ButtonEditProfile onPress={handleEditProfile}>
-              <Icon name="edit-3" size={24} color="#AEAEB3" />
-            </ButtonEditProfile>
-            <TitleText>Perfil</TitleText>
-            <ButtonLogout onPress={handleNavigation}>
-              <Icon name="power" size={24} color="#AEAEB3" />
-            </ButtonLogout>
-          </HeaderWrapper>
-        ) : (
-          <HeaderWrapper>
             <ButtonEditProfile onPress={() => navigation.goBack()}>
               <Icon name="arrow-left" size={24} color="#AEAEB3" />
             </ButtonEditProfile>
+
             <TitleText>Editar Perfil</TitleText>
             <ItemEmpty />
+          </HeaderWrapper>
+        ) : (
+          <HeaderWrapper>
+            <ButtonEditProfile onPress={handleEditProfile}>
+              <Icon name="edit-3" size={24} color="#AEAEB3" />
+            </ButtonEditProfile>
+
+            <TitleText>Perfil</TitleText>
+
+            <ButtonLogout onPress={handleNavigation}>
+              <Icon name="power" size={24} color="#AEAEB3" />
+            </ButtonLogout>
           </HeaderWrapper>
         )}
       </Header>
 
       <InfoProfile>
         <ProfilePicture>
-          <ImageProfile source={ProfileImage} style={{ borderRadius: 90 }} />
+          <ImageProfile source={ProfileImage} />
+
+          {enableEdit && (
+            <EditProfile onPress={() => {}}>
+              <Icon name="camera" color="#FFFFFF" size={20} />
+            </EditProfile>
+          )}
         </ProfilePicture>
 
-        {enableEdit && <ProfileNameText>Diego Alves de Souza</ProfileNameText>}
+        {!enableEdit && <ProfileNameText>Diego Alves de Souza</ProfileNameText>}
       </InfoProfile>
     </Container>
   );

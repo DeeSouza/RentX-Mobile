@@ -3,9 +3,7 @@ import styled from 'styled-components/native';
 
 const heightScreen = StatusBar.currentHeight || 0;
 
-export const Container = styled.View`
-  flex: 1;
-`;
+export const Container = styled.View``;
 
 export const ScrollViewContainer = styled.ScrollView``;
 
@@ -48,16 +46,18 @@ export const InfoProfile = styled.View`
 `;
 
 export const ProfilePicture = styled.View`
-  overflow: hidden;
   width: 180px;
   height: 180px;
   margin: auto;
   margin-top: -90px;
+  border-radius: 90px;
+  position: relative;
 `;
 
 export const ImageProfile = styled.Image`
   width: 100%;
   height: 100%;
+  border-radius: 90px;
 `;
 
 export const ProfileNameText = styled.Text`
@@ -67,4 +67,15 @@ export const ProfileNameText = styled.Text`
   color: #3d3d4d;
   text-align: center;
   margin-top: 24px;
+`;
+
+export const EditProfile = styled.TouchableOpacity`
+  background-color: #dc1637;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
 `;
