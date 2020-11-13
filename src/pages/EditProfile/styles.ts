@@ -19,9 +19,15 @@ export const WrapperContainer = styled.ScrollView.attrs({
   },
 })``;
 
+export const WrapperForms = styled.View`
+  flex-direction: row;
+  overflow: hidden;
+`;
+
 export const WrapperForm = styled.View`
-  padding: 24px 24px 10px;
   width: 100%;
+  margin: 0;
+  padding: 24px 24px 10px;
 `;
 
 export const FinalContainer = styled.View`

@@ -2,17 +2,29 @@ import React from 'react';
 
 import { Container, WrapperTabs, Tab, TabText } from './styles';
 
-const Tabs: React.FC = () => {
+interface IHeaderProps {
+  title: string;
+  active: boolean;
+  target: string;
+}
+interface IProps {
+  onChangeTab(key: string): void;
+  headers: IHeaderProps[];
+}
+
+const Tabs: React.FC<IProps> = ({ onChangeTab, headers }) => {
   return (
     <Container>
       <WrapperTabs>
-        <Tab active onPress={() => {}}>
-          <TabText active>Dados</TabText>
-        </Tab>
-
-        <Tab onPress={() => {}}>
-          <TabText>Trocar senha</TabText>
-        </Tab>
+        {headers.map((header) => (
+          <Tab
+            key={header.title}
+            active={header.active}
+            onPress={() => onChangeTab(header.target)}
+          >
+            <TabText active>{header.title}</TabText>
+          </Tab>
+        ))}
       </WrapperTabs>
     </Container>
   );
