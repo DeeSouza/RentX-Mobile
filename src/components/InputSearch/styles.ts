@@ -1,10 +1,5 @@
 import styled, { css } from 'styled-components/native';
 
-interface IIconInputProps {
-  isFocused: boolean;
-  isErrored: boolean;
-}
-
 export const Container = styled.View`
   height: 56px;
   width: 100%;

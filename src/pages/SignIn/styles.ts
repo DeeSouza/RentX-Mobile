@@ -39,7 +39,7 @@ export const WrapperForm = styled.View`
 `;
 
 export const WrapperRememberAndForgot = styled.TouchableOpacity`
-  padding: 32px 0px 0px;
+  padding: 32px 0px 32px;
   justify-content: space-between;
   flex-direction: row;
   align-items: center;

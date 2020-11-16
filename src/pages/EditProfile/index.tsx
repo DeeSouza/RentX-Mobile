@@ -21,7 +21,13 @@ import {
 
 interface ISignInFormData {
   email: string;
+  name: string;
+}
+
+interface ISignInFormPassword {
   password: string;
+  newPassword: string;
+  confirmNewPassword: string;
 }
 
 interface IPasswordSecure {
@@ -50,20 +56,21 @@ const EditProfile: React.FC = () => {
     },
   ]);
 
-  const formRef = useRef<FormHandles>(null);
+  const formRefData = useRef<FormHandles>(null);
+  const formRefPassword = useRef<FormHandles>(null);
   const emailInputRef = useRef<TextInput>(null);
   const currentPasswordInputRef = useRef<TextInput>(null);
   const newPasswordInputRef = useRef<TextInput>(null);
   const confirmNewPasswordInputRef = useRef<TextInput>(null);
 
-  const handleSubmit: SubmitHandler<ISignInFormData> = async (data) => {
+  const handleSubmitData: SubmitHandler<ISignInFormData> = async (data) => {
     try {
       const schema = yup.object().shape({
         email: yup
           .string()
           .required('E-mail é obrigatório')
           .email('Digite um e-mail válido'),
-        password: yup.string().required('Senha obrigatória'),
+        name: yup.string().required('Nome obrigatório'),
       });
 
       await schema.validate(data, {
@@ -72,16 +79,22 @@ const EditProfile: React.FC = () => {
     } catch (err) {
       if (err instanceof yup.ValidationError) {
         const errors = getValidationErrors(err);
-        formRef.current?.setErrors(errors);
+        formRefData.current?.setErrors(errors);
 
         return;
       }
 
       Alert.alert(
-        'Erro na Autenticação',
-        'Ocorreu um erro ao fazer login. Verifique as credenciais.',
+        'Erro na Atualização',
+        'Ocorreu um erro ao atualizar os dados. Tente novamente mais tarde.',
       );
     }
+  };
+
+  const handleSubmitPassword: SubmitHandler<ISignInFormPassword> = async (
+    data,
+  ) => {
+    console.log(data);
   };
 
   const handleShowPassword = useCallback((field) => {
@@ -125,7 +138,7 @@ const EditProfile: React.FC = () => {
               ],
             }}
           >
-            <Form onSubmit={handleSubmit} ref={formRef}>
+            <Form onSubmit={handleSubmitData} ref={formRefData}>
               <Input
                 icon="person"
                 name="name"
@@ -144,9 +157,15 @@ const EditProfile: React.FC = () => {
                 autoCapitalize="none"
                 keyboardType="email-address"
                 returnKeyType="next"
-                onSubmitEditing={() => formRef.current?.submitForm()}
+                onSubmitEditing={() => formRefData.current?.submitForm()}
               />
             </Form>
+
+            <FinalContainer>
+              <Button onPress={() => formRefData.current?.submitForm()}>
+                Salvar alterações
+              </Button>
+            </FinalContainer>
           </WrapperForm>
 
           <WrapperForm
@@ -159,7 +178,7 @@ const EditProfile: React.FC = () => {
               ],
             }}
           >
-            <Form onSubmit={handleSubmit} ref={formRef}>
+            <Form onSubmit={handleSubmitPassword} ref={formRefPassword}>
               <Input
                 icon="lock"
                 isPassword
@@ -175,7 +194,7 @@ const EditProfile: React.FC = () => {
               <Input
                 icon="lock"
                 isPassword
-                name="password"
+                name="newPassword"
                 placeholder="Nova senha"
                 secureTextEntry={secureTextEntry.newPassword}
                 handleShowPassword={() => handleShowPassword('newPassword')}
@@ -189,7 +208,7 @@ const EditProfile: React.FC = () => {
               <Input
                 icon="lock"
                 isPassword
-                name="password"
+                name="confirmNewPassword"
                 placeholder="Repetir nova senha"
                 secureTextEntry={secureTextEntry.confirmNewPassword}
                 handleShowPassword={() =>
@@ -197,17 +216,17 @@ const EditProfile: React.FC = () => {
                 }
                 returnKeyType="send"
                 ref={confirmNewPasswordInputRef}
-                onSubmitEditing={() => formRef.current?.submitForm()}
+                onSubmitEditing={() => formRefPassword.current?.submitForm()}
               />
             </Form>
+
+            <FinalContainer hasPadding>
+              <Button onPress={() => formRefPassword.current?.submitForm()}>
+                Salvar alterações
+              </Button>
+            </FinalContainer>
           </WrapperForm>
         </WrapperForms>
-
-        <FinalContainer>
-          <Button onPress={() => formRef.current?.submitForm()}>
-            Salvar alterações
-          </Button>
-        </FinalContainer>
       </WrapperContainer>
     </Container>
   );

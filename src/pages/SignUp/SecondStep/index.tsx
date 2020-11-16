@@ -108,12 +108,10 @@ const SignUpSecondStep: React.FC = () => {
               ref={confirmPasswordInputRef}
               onSubmitEditing={() => formRef.current?.submitForm()}
             />
-
-            <Button onPress={() => formRef.current?.submitForm()}>
-              Cadastrar
-            </Button>
           </Form>
         </WrapperForm>
+
+        <Button onPress={() => formRef.current?.submitForm()}>Cadastrar</Button>
       </KeyboardAvoidingView>
     </Container>
   );

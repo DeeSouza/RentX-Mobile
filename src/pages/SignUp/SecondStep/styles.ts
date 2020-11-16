@@ -34,7 +34,7 @@ export const SubHeadingText = styled.Text`
 `;
 
 export const WrapperForm = styled.View`
-  margin-top: 80px;
+  margin: 80px 0px 32px;
   width: 100%;
 `;
 
